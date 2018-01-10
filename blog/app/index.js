@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 //import { Router, Route, Link,hashHistory ,IndexRedirect,IndexRoute} from 'react-router'
 //import {Provider} from 'react-redux'
+import './index.scss'
 // const route = (
 //   <Provider store={store}>
 //       <Router history={hashHistory}>

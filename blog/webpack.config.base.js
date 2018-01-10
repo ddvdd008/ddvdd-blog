@@ -13,9 +13,9 @@ let baseConfig = {
 		app:PATHS.APP.join('index.js')
 	},
 	output:{
-        path:PATHS.DIST,//打包编译完的文件根目录
-        filename: "js/[name].js",//打包编译完文件路径和名称
-		chunkFilename: 'js/[name].chunk.js',//按需加载的文件打包编译完路径
+        //path:PATHS.DIST,//打包编译完的文件根目录
+        //filename: "js/[name].js",//打包编译完文件路径和名称
+		//chunkFilename: 'js/[name].js',//按需加载的文件打包编译完路径
 	},
 	module:{
 		rules: [{

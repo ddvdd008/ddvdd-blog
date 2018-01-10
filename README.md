@@ -22,16 +22,17 @@ npm install
 
 #### 开发模式：
 ```
-webpack --config .\dll.config.dev.js
+webpack-dev-server --progress --profile --colors --hot --inline --config webpack.config.dev.js
 
 npm run dev
 ```
 
 #### 产品模式：
 ```
-webpack --config .\dll.config.prod.js
+webpack --config webpack.config.prod.js
 
 npm run build
 ```
 
-在public/index.html中引入正确的`bundle.js`和`lib.js`。
+在dist/index.html中引入正确的`vendors.js`和`app.js`。
+在dist/index.html中引入正确的`vendors.css`和`app.css`。

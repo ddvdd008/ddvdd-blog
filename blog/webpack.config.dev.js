@@ -15,15 +15,15 @@ const PATHS = require('./PATHS');
 
 let devConfig = merge(webpackBaseConfig, {
 	output:{
-        path:PATHS.DIST,//打包编译完的文件根目录
+        path:PATHS.HTML,//打包编译完的文件根目录
         filename: "js/[name].js",//打包编译完文件路径和名称
-		chunkFilename: 'js/[name].chunk.js',//按需加载的文件打包编译完路径
-		publicPath: 'http://localhost:8080/dist/',
+		chunkFilename: 'js/[name].js',//按需加载的文件打包编译完路径
+		publicPath: 'http://localhost:8080/html/',
 	},
 	//启动dev source map，出错以后就会采用source-map的形式直接显示你出错代码的位置。
 	devtool:'eval-source-map',
 	devServer:{
-        contentBase: PATHS.DIST,
+        //contentBase: PATHS.HTML,
         port:8080,
         hot:true,
         noInfo:true,
@@ -37,24 +37,21 @@ let devConfig = merge(webpackBaseConfig, {
 		// }
 	},
     plugins: [
+        new webpack.DllReferencePlugin({
+			context: __dirname,
+			manifest: require('./vendors-manifest-dev.json')
+		}),
         new ExtractTextPlugin({
             filename:'css/[name].css',
             allChunks: true
         }),
-        new webpack.optimize.CommonsChunkPlugin('vendors'),
-	    new HtmlwebpackPlugin({
-	      title: 'ddvdd-blog',
-	      template: PATHS.HTML.join('index.html'),
-	      //filename: 'index.html',
-	      //chunks: ['vendors','app'],
-	      inject: true
-        }),
-        // new webpack.DefinePlugin({
-        //     "process.env": {
-        //     NODE_ENV: JSON.stringify("dev")
-        //     }
-        // }),   
-        new OpenBrowserPlugin({ url: 'http://localhost:8080/dist/' })
+        //new webpack.optimize.CommonsChunkPlugin('vendors'),
+        new webpack.DefinePlugin({
+            "process.env": {
+            NODE_ENV: JSON.stringify("dev")
+            }
+        }),   
+        new OpenBrowserPlugin({ url: 'http://localhost:8080/html/' })
 	  ]
 });
 
