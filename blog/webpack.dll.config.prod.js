@@ -15,7 +15,7 @@ module.exports = {
 	},
 	output: {
 		path: PATHS.DIST,
-		filename:"js/[name]-[chunkhash:8].js",//打包编译完文件路径和名称
+		filename:"js/[name]-[chunkhash:8]-dll.js",//打包编译完文件路径和名称
 		library: '[name]_[chunkhash:8]'
     },
     module:{
@@ -35,7 +35,7 @@ module.exports = {
     },
 	plugins: [
 		new ExtractTextPlugin({
-            filename:'css/[name]-[contenthash:8].css',
+            filename:'css/[name]-[contenthash:8]-dll.css',
             allChunks: true
         }),
         new OptimizeCssAssetsPlugin({

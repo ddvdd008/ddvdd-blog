@@ -15,7 +15,7 @@ const PATHS = require('./PATHS');
 
 let devConfig = merge(webpackBaseConfig, {
 	output:{
-        path:PATHS.HTML,//打包编译完的文件根目录
+        //path:PATHS.DIST,//打包编译完的文件根目录
         filename: "js/[name].js",//打包编译完文件路径和名称
 		chunkFilename: 'js/[name].js',//按需加载的文件打包编译完路径
 		publicPath: 'http://localhost:8080/html/',
@@ -37,15 +37,23 @@ let devConfig = merge(webpackBaseConfig, {
 		// }
 	},
     plugins: [
-        new webpack.DllReferencePlugin({
-			context: __dirname,
-			manifest: require('./vendors-manifest-dev.json')
-		}),
+        // new webpack.DllReferencePlugin({
+		// 	context: __dirname,
+		// 	manifest: require('./vendors-manifest-dev.json')
+        // }),
+        new HtmlwebpackPlugin({
+            title: 'ddvdd-blog',
+            template: PATHS.HTML.join('index.html'),
+            filename: 'index.html',
+            //chunks: ['vendors','app'],
+            //hash:true,
+            inject: true
+        }),
         new ExtractTextPlugin({
             filename:'css/[name].css',
             allChunks: true
         }),
-        //new webpack.optimize.CommonsChunkPlugin('vendors'),
+        new webpack.optimize.CommonsChunkPlugin('vendors'),
         new webpack.DefinePlugin({
             "process.env": {
             NODE_ENV: JSON.stringify("dev")

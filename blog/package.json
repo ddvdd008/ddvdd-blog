@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "webpack-dev-server --progress --profile --colors --hot --inline --config webpack.config.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "dll-dev": "cross-env NODE_ENV=dev webpack --config webpack.dll.config.dev.js",
     "dll-build": "cross-env NODE_ENV=production webpack --config webpack.dll.config.prod.js"
   },
   "repository": {
@@ -23,6 +22,7 @@
   },
   "homepage": "https://github.com/ddvdd008/ddvdd-blog#readme",
   "devDependencies": {
+    "add-asset-html-webpack-plugin": "^2.1.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-import": "^1.2.1",
@@ -31,6 +31,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.8",
     "extract-text-webpack-plugin": "^3.0.2",
